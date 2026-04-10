@@ -4,38 +4,38 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-// use Illuminate\Support\Facades\DB;
+
 class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void 
+    public function run(): void
     {
         //
+
         $users = [
             [
-                'name' => 'becaye diop',
-                'email' => 'becaye.diop@example.com',
-                 'password' => bcrypt('password')
+                "name" => "John Doe",
+                "email" => "john.doe@example.com",
+                "password" => bcrypt("password123")
             ],
             [
-                'name' => 'dame diop',
-                'email' => 'dame.diop@example.com',
-                'password' => bcrypt('password')    
+                "name" => "Aicha Diagne",
+                "email" => "aicha.diagne@example.com",
+                "password" => bcrypt("password123")
+            ],
+            [
+                "name" => "Aly Tall Niang",
+                "email" => "aly.tall.niang@example.com",
+                "password" => bcrypt("password123")
             ],
 
-            [
-                'name' => 'Alune Johnson',
-                'email' => 'alune.johnson@example.com',
-                'password' => bcrypt('password')
-            ]
         ];
 
 
         foreach ($users as $user) {
-            \App\Models\User::create($user);    
+            \App\Models\User::create($user);
         }
     }
 }
-
