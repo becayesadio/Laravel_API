@@ -2,40 +2,29 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccountController;
-use App\Http\Resources\AccountResource;
 
-/*|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|  | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which is assigned the "api" middleware group. Enjoy building your API!
-|*/ 
-// cette route est protégée par le middleware 'auth:sanctum', ce qui signifie que l'utilisateur doit être authentifié pour y accéder. Lorsque l'utilisateur accède à cette route, la fonction de rappel retourne les informations de l'utilisateur authentifié en utilisant $request->user().   
 Route::get('/user', function(Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// 
+// Users
 Route::get('/users', [UserController::class, 'index']);
-<<<<<<< HEAD
 Route::post('/users-create', [UserController::class, 'createUser']);
-Route::post('/accounts-create', [AccountController::class, 'createAccount']);
-Route::get('/accounts', [AccountController::class, 'index']);
-=======
-
 Route::post('/user-create', [UserController::class, 'createUser']);
 
+// Accounts
+Route::post('/accounts-create', [AccountController::class, 'createAccount']);
+Route::get('/accounts', [AccountController::class, 'index']);
+
+// Auth
 Route::post('/register', [AuthController::class, 'register']);
-
-
 Route::post('/login', [AuthController::class, 'login']);
 
-
+// Transactions (protégées)
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
+    Route::get('/transactions', [TransactionController::class, 'index']);
 });
->>>>>>> feat/users
