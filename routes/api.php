@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,21 @@ Route::get('/user', function(Request $request) {
 
 // 
 Route::get('/users', [UserController::class, 'index']);
+<<<<<<< HEAD
 Route::post('/users-create', [UserController::class, 'createUser']);
 Route::post('/accounts-create', [AccountController::class, 'createAccount']);
 Route::get('/accounts', [AccountController::class, 'index']);
+=======
+
+Route::post('/user-create', [UserController::class, 'createUser']);
+
+Route::post('/register', [AuthController::class, 'register']);
+
+
+Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
+});
+>>>>>>> feat/users
